@@ -15,7 +15,7 @@
 	<name>Car Application</name>
 	<description>Car Application</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		
 	<!-- JaCoCo Properties -->
 	    <jacoco.version>0.8.6</jacoco.version>
