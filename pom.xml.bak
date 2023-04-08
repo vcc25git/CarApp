@@ -76,9 +76,26 @@
 		</dependency>
 		
 	</dependencies>
+	
+	<reporting>
+		<plugins>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-checkstyle-plugin</artifactId>
+			  <version>3.2.1</version>
+			  <reportSets>
+				<reportSet>
+				  <reports>
+					<report>checkstyle</report>
+				  </reports>
+				</reportSet>
+			  </reportSets>
+			</plugin>
+		</plugins>
+    </reporting>
 
 	<build>
-		<plugins>
+	<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -112,8 +129,15 @@
 			<configuration>
 				<webappDirectory>/target/webapp</webappDirectory>
 			</configuration>
-      </plugin>
-		</plugins>
+		</plugin>
+	  
+	    <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-checkstyle-plugin</artifactId>
+			<version>3.2.1</version>
+		</plugin>
+	  
+	</plugins>
 	</build>
 
 </project>
