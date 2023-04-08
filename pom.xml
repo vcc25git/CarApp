@@ -60,14 +60,7 @@
   			<artifactId>mockito-core</artifactId>
   			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-war-plugin</artifactId>
-			<version>3.3.2</version>
-			<type>maven-plugin</type>
-		</dependency>
-		
+	
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-checkstyle-plugin</artifactId>
@@ -120,15 +113,6 @@
 		            </goals>
 		        </execution>
 		    </executions>
-		</plugin>
-			
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-war-plugin</artifactId>
-			<version>3.3.2</version>
-			<configuration>
-				<webappDirectory>/target/webapp</webappDirectory>
-			</configuration>
 		</plugin>
 	  
 	    <plugin>
