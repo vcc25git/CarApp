@@ -9,24 +9,11 @@ pipeline {
 		}
 		stage('Build'){
 			steps {
-				bat 'mvn clean compile'
+				bat 'mvn clean compile sonar:sonar'
 			}
 		}
-		
+	
 
-		stage('SonarQube analysis') {
-
-			environment {
-				scannerHome = tool 'sonarqube' // the name you have given the Sonar Scanner (in Global Tool Configuration)
-			}
-			steps {
-				withSonarQubeEnv(installationName: 'SonarQube') {
-				bat "${scannerHome}/bin/sonar-scanner -X"
-				}
-			}
-		}
-		
-		
 		stage('Testing'){
 			steps {
 			 	bat 'test'
