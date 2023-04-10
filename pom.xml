@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>edu.tus.carapp</groupId>
 	<artifactId>CarApp</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Car Application</name>
 	<description>Car Application</description>
