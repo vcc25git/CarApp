@@ -19,7 +19,7 @@ pipeline {
 				bat 'mvn clean compile'
 			}
 		}
-		
+
 		stage('CodeAnalysis'){
 			steps {
 				withSonarQubeEnv(installationName: ‘sonarqube’, credentialsId: ‘SonarToken’) {
@@ -27,7 +27,7 @@ pipeline {
 				}
 			}
 		}
-		
+
 		stage('Testing'){
 			steps {
 			 	bat "test"
