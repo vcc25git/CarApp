@@ -20,12 +20,6 @@ pipeline {
 			}
 		}
 		
-		stage('Code analysis') {
-			withSonarQubeEnv('sonarqube') {
-			bat 'mvn sonar:sonar'
-			}
-		}
-
 		stage('Testing'){
 			steps {
 			 	bat "test"
@@ -35,7 +29,7 @@ pipeline {
 
 		stage('Package') {
 			steps {
-				bat "mvn package"
+				bat 'mvn package'
 			}
 		}		
 	}
