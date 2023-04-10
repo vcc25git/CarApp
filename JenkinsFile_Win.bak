@@ -13,7 +13,15 @@ pipeline {
 			}
 		}
 		
-
+		stage('Code Analysis') {
+			steps {
+			 
+				withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'SonarToken') {
+				bat(script: 'C://Sonar//sonar-scanner//bin//sonar-scanner -Dproject.settings=sonar-project.properties’, label: ‘SonarQube Analysis')
+			}
+			}
+		}
+		
 		stage('SonarQube analysis') {
 
 			environment {
@@ -21,7 +29,7 @@ pipeline {
 			}
 			steps {
 				withSonarQubeEnv(installationName: 'SonarQube') {
-				bat "${scannerHome}/bin/sonar-scanner -X"
+				sh "${scannerHome}/bin/sonar-scanner -X"
 				}
 			}
 		}
