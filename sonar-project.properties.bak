@@ -21,3 +21,4 @@ sonar.language=java
 sonar.java.binaries=target
 sonar.sources=src/main/java
 sonar.tests=src/test/java
+sonar.login=sqp_3eda0c5c2fc0ef4866d6de014dc69f25799960d8
