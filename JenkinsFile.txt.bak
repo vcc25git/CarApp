@@ -19,7 +19,7 @@ pipeline {
 			}
 		}
 		
-		stage('Code Analysis') {
+		stage(‘Code Analysis’) {
 			steps {
 			 
 			withSonarQubeEnv(installationName: ‘sonarqube’, credentialsId: ‘SonarToken’) {
