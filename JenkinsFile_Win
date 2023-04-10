@@ -1,34 +1,30 @@
 pipeline {
 	agent any
 	
-	tools{
-		maven 'M2_HOME'
-		jdk 'JAVA_HOME'
-	
-	}
-	
 	stages {
 		stage('Checkout'){
 			steps {
 				git 'https://github.com/vcc25git/CarApp.git'
 			}
 		}
-		
 		stage('Build'){
 			steps {
 				bat 'mvn clean compile'
 			}
 		}
 		
-		stage('Code analysis') {
-			withSonarQubeEnv('sonarqube') {
-			bat 'mvn sonar:sonar'
+		stage('Code Analysis') {
+			steps {
+			 
+			withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'SonarToken') {
+			bat(script: 'C://Sonar//sonar-scanner//bin//sonar-scanner -Dproject.settings=sonar-project.properties’, label: ‘SonarQube Analysis')
 			}
-		}
-
+			}
+			}
+		
 		stage('Testing'){
 			steps {
-			 	bat "test"
+			 	bat 'test'
 			 	junit '**/target/surefire-reports/TEST-*.xml'
 			 }
 		}
