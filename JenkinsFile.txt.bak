@@ -20,30 +20,18 @@ pipeline {
 			}
 		}
 		
-		
-		stage("Build and Code analysis") {
-				node {
-					withSonarQubeEnv('My SonarQube Server') {
-					sh 'mvn clean package sonar:sonar'
-					}
-				}
-		}
-
-		stage("Quality Gate"){
-				timeout(time: 1, unit: 'HOURS') {
-					def qg = waitForQualityGate()
-					if (qg.status != 'OK') {
-						error "Pipeline aborted due to quality gate failure: ${qg.status}"
-				}
-			}
-		}
-
 		stage('CodeAnalysis'){
 			steps {
 				withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'SonarToken') {
 				bat(script: 'C://Sonar//sonar-scanner//bin//sonar-scanner -Dproject.settings=sonar-project.properties', label: 'SonarQube Analysis')
 				}
 			}
+		}
+		
+		stage('Code analysis') {
+			withSonarQubeEnv('sonarqube') {
+			bat 'mvn sonar:sonar'
+			} // submitted SonarQube taskId is automatically attached to the pipeline context
 		}
 
 		stage('Testing'){
