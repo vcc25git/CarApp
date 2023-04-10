@@ -13,20 +13,20 @@ pipeline {
 				git 'https://github.com/vcc25git/CarApp.git'
 			}
 		}
+		
 		stage('Build'){
 			steps {
-				sh 'mvn clean compile'
+				bat 'mvn clean compile'
 			}
 		}
 		
-		stage('Code-Analysis'){
+		stage('CodeAnalysis'){
 			steps {
-			 
-			withSonarQubeEnv(installationName: ‘sonarqube’, credentialsId: ‘SonarToken’) {
-			bat(script: ‘C://Sonar//sonar-scanner//bin//sonar-scanner -Dproject.settings=sonar-project.properties’, label: ‘SonarQube Analysis’)
+				withSonarQubeEnv(installationName: ‘sonarqube’, credentialsId: ‘SonarToken’) {
+				bat(script: ‘C://Sonar//sonar-scanner//bin//sonar-scanner -Dproject.settings=sonar-project.properties’, label: ‘SonarQube Analysis’)
+				}
 			}
-			}
-			}
+		}
 		
 		stage('Testing'){
 			steps {
@@ -37,7 +37,7 @@ pipeline {
 
 		stage('Package') {
 			steps {
-				sh "mvn package"
+				bat "mvn package"
 			}
 		}		
 	}
